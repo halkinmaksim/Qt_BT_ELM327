@@ -5,6 +5,8 @@
 #include <QBluetoothServiceDiscoveryAgent>
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <qbluetoothlocaldevice.h>
+#include <QtBluetooth/qbluetoothserviceinfo.h>
+#include <QtBluetooth/qbluetoothsocket.h>
 
 /*
  * Discovered service on "OBD II" "AA:BB:CC:11:22:33"
@@ -25,6 +27,7 @@ public:
 	~BTDevice();
 
 	void StartDiscover();
+	void ConnectDevice();
 
 signals:
 
@@ -34,11 +37,23 @@ public slots:
 	void deviceDiscError(QBluetoothDeviceDiscoveryAgent::Error error);
 	void deviceScanFinished();
 	void deviceUpdated(const QBluetoothDeviceInfo &info, QBluetoothDeviceInfo::Fields updatedFields);
+//	service slots
+	void serviceDiscovered(const QBluetoothServiceInfo &info);
+	void serviceDiscoveryFinished();
+
+//	socket slots
+	void readSocket();
+	void connected();
+	void onSocketErrorOccurred(QBluetoothSocket::SocketError);
 
 protected:
 	QBluetoothDeviceDiscoveryAgent *m_deviceDiscoveryAgent;
 	QBluetoothServiceDiscoveryAgent *m_serviceDiscoveryAgent;
+	//QMap<QListWidgetItem*, QBluetoothServiceInfo> m_discoveredServices;
 	QBluetoothLocalDevice *localDevice;
+
+	QString m_odb_DeviceName;
+	QBluetoothSocket *socket = nullptr;
 	//DeviceInfo currentDevice;
 
 };

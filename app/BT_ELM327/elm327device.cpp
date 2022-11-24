@@ -20,3 +20,8 @@ void ELM327Device::startScanDevice()
 	qDebug("%s::%s(): Entered", __CLASS__, __FUNCTION__);
 	m_bt_device->StartDiscover();
 }
+
+void ELM327Device::startScanDeviceService()
+{
+	m_bt_device->ConnectDevice();
+}

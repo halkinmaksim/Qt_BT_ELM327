@@ -10,11 +10,21 @@ Window {
 
     Button{
         id: buttSearch
-        x: 221
-        y: 162
+        x: 85
+        y: 121
         text: "Search"
         onClicked: {
             ELM327Device.startScanDevice();
+        }
+    }
+
+    Button {
+        id: buttonSearchService
+        x: 224
+        y: 121
+        text: qsTr("Serch Service")
+        onClicked: {
+            ELM327Device.startScanDeviceService();
         }
     }
 }

@@ -15,6 +15,7 @@ public:
 
 public slots:
 	void startScanDevice();
+	void startScanDeviceService();
 signals:
 
 protected:
