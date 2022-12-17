@@ -12,10 +12,15 @@ public:
 	explicit ELM327Device(QObject *parent = nullptr);
 	~ELM327Device();
 
+	void Connect(QString obd_device_name);
+
 
 public slots:
 	void startScanDevice();
 	void startScanDeviceService();
+
+	//	OBD Adaptor slots
+
 signals:
 
 protected:

@@ -30,7 +30,10 @@ public:
 	void ConnectDevice();
 
 signals:
-
+	void messageReceived(const QString &sender, const QString &message);
+	void connected(const QString &name);
+	void disconnected();
+	void socketErrorOccurred(const QString &errorString);
 
 public slots:
 	void deviceDiscovered(const QBluetoothDeviceInfo &device);
@@ -44,12 +47,14 @@ public slots:
 //	socket slots
 	void readSocket();
 	void connected();
+	void disconnectedSocket();
 	void onSocketErrorOccurred(QBluetoothSocket::SocketError);
 
 protected:
 	QBluetoothDeviceDiscoveryAgent *m_deviceDiscoveryAgent;
 	QBluetoothServiceDiscoveryAgent *m_serviceDiscoveryAgent;
 	//QMap<QListWidgetItem*, QBluetoothServiceInfo> m_discoveredServices;
+	QList<QBluetoothServiceInfo> m_discoveredServices;
 	QBluetoothLocalDevice *localDevice;
 
 	QString m_odb_DeviceName;

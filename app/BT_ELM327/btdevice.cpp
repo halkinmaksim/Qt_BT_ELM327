@@ -1,4 +1,5 @@
 #include "btdevice.h"
+#include <QtCore/qmetaobject.h>
 
 #define __CLASS__               "BTDevice"
 
@@ -19,6 +20,9 @@ BTDevice::BTDevice(QObject *parent) : QObject(parent)
 	// Закончили поиск
 	connect(m_deviceDiscoveryAgent, SIGNAL(finished()),
 				this, SLOT(deviceScanFinished()));
+
+
+	socket = new QBluetoothSocket(QBluetoothServiceInfo::L2capProtocol);
 	// Обновление ус-ва
 /*
  * \connect(m_deviceDiscoveryAgent, SIGNAL(deviceUpdated(QBluetoothDeviceInfo, QBluetoothDeviceInfo::Fields)),
@@ -161,7 +165,35 @@ void BTDevice::serviceDiscovered(const QBluetoothServiceInfo &serviceInfo)
 	{
 		// connect
 		m_odb_DeviceName = remoteName;
+		qDebug() << "Connecting to service 2" << serviceInfo.serviceName()
+				 << "on" << serviceInfo.device().name();
+
+		// Create client
+		//qDebug() << "Going to create client";
+		//ChatClient *client = new ChatClient(this);
+		qDebug() << "Connecting...";
+
+		qDebug() << "Create socket";
+		socket->connectToService(serviceInfo);
+		qDebug() << "ConnectToService done";
+		connect(socket, SIGNAL(readyRead()), this, SLOT(readSocket()));
+		connect(socket, SIGNAL(connected()), this, SLOT(connected()));
+		connect(socket, SIGNAL(disconnected()), this, SLOT(disconnectedSocket()));
+		connect(socket, SIGNAL(error(QBluetoothSocket::SocketError)),
+				this, SLOT(onSocketErrorOccurred(QBluetoothSocket::SocketError)));
+		/*
+		connect(client, &ChatClient::messageReceived,
+				this, &Chat::showMessage);
+		connect(client, &ChatClient::disconnected,
+				this, QOverload<>::of(&Chat::clientDisconnected));
+		connect(client, QOverload<const QString &>::of(&ChatClient::connected),
+				this, &Chat::connected);
+		connect(client, &ChatClient::socketErrorOccurred,
+				this, &Chat::reactOnSocketError);
+		connect(this, &Chat::sendMessage, client, &ChatClient::sendMessage);
+		*/
 	}
+	m_discoveredServices.append(serviceInfo);
 
 /*
 	QListWidgetItem *item =
@@ -190,7 +222,7 @@ void BTDevice::readSocket()
 	while (socket->canReadLine()) {
 		QByteArray line = socket->readLine();
 		qDebug() << line;
-		//emit messageReceived(socket->peerName(), QString::fromUtf8(line.constData(), line.length()));
+		emit messageReceived(socket->peerName(), QString::fromUtf8(line.constData(), line.length()));
 	}
 }
 
@@ -198,7 +230,12 @@ void BTDevice::connected()
 {
 	qDebug("%s::%s(): Entered", __CLASS__, __FUNCTION__);
 	qDebug() << "socket->peerName(): " << socket->peerName();
-	//emit connected(socket->peerName());
+	emit connected(socket->peerName());
+}
+
+void BTDevice::disconnectedSocket()
+{
+	qDebug("%s::%s(): Entered", __CLASS__, __FUNCTION__);
 }
 
 void BTDevice::onSocketErrorOccurred(QBluetoothSocket::SocketError error)
@@ -206,10 +243,8 @@ void BTDevice::onSocketErrorOccurred(QBluetoothSocket::SocketError error)
 	qDebug("%s::%s(): Entered", __CLASS__, __FUNCTION__);
 	if (error == QBluetoothSocket::NoSocketError)
 		return;
-
-	//QMetaEnum metaEnum = QMetaEnum::fromType<QBluetoothSocket::SocketError>();
-	//QString errorString = socket->peerName() + QLatin1Char(' ')
-		//	+ metaEnum.valueToKey(error) + QLatin1String(" occurred");
-
-	//emit socketErrorOccurred(errorString);
+	QMetaEnum metaEnum = QMetaEnum::fromType<QBluetoothSocket::SocketError>();
+	QString errorString = socket->peerName() + QLatin1Char(' ')
+		+ metaEnum.valueToKey(error) + QLatin1String(" occurred");
+	emit socketErrorOccurred(errorString);
 }
