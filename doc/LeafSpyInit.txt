@@ -1,0 +1,48 @@
+  
+ Decoded Protocol Result '0' (framing error)
+ A T E 1 \r 
+ A T Z \r 
+ A T E 0 \r 
+ A T L 0 \r A T I \r 
+ S T I \r 
+ A T S P 6 \r 
+ A T H 1 \r 
+ A T S 0 \r 
+ A T C A F 0 \r 
+ A T S H 7 9 7 \r 
+ A T F C S H 7 9 7 \r 
+ A T F C S D 3 0 0 0 0 0 \r 
+ A T F C S M 1 \r 0 2 1 0 C 0 \r 
+ 
+ A T E 1 \r A T Z \r A T E 0 \r A T L 0 \r A T I \r S T I \r A T S P 6 \r A T H 1 \r A T S 0 \r A T C A F 0 \r 
+ A T S H 7 9 7 \r 
+ A T F C S H 7 9 7 \r 
+ A T F C S D 3 0 0 0 0 0 \r 
+ A T F C S M 1 \r 0 2 1 0 C 0 \r 
+ A T E 1 \r 
+ A T Z \r 
+ A T E 0 \r 
+ A T L 0 \r 
+ A T I \r 
+ S T I \r 
+ A T S P 6 \r 
+ A T H 1 \r 
+ A T S 0 \r 
+ A T C A F 0 \r 
+ A T S H 7 9 7 \r 
+ A T F C S H 7 9 7 \r 
+ A T F C S D 3 0 0 0 0 0 \r 
+ A T F C S M 1 \r 0 2 1 0 C 0 \r 
+ A T E 1 \r A T Z \r A T E 0 \r A T L 0 \r A T I \r S T I \r A T S P 6 \r A T H 1 \r A T S 0 \r A T C A F 0 \r A T S H 7 9 7 \r A T F C S H 7 9 7 \r A T F C S D 3 0 0 0 0 0 \r A T F C S M 1 \r 0 2 1 0 C 0 \r A T E 1 \r A T Z \r A T E 0 \r A T L 0 \r A T I \r S T I \r A T S P 6 \r                                                                                                                
+
+
+
+
+
+
+
+Answer
+    Decoded Protocol Result '0' (framing error) \r \r 
+ E L M 3 2 7 ' ' v 1 . 5 \r \r > 
+ A T E 1 \r O K \r \r > 
+ A T Z \r '252' \r \r E L M 3 2 7 ' ' v 1 . 5 \r \r > A T E 0 \r O K \r \r > O K \r \r > E L M 3 2 7 ' ' v 1 . 5 \r \r > ? \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > C A N ' ' E R R O R \r \r > O K \r \r > A T Z \r '252' \r \r E L M 3 2 7 ' ' v 1 . 5 \r \r > A T E 0 \r O K \r \r > O K \r \r > E L M 3 2 7 ' ' v 1 . 5 \r \r > ? \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > C A N ' ' E R R O R \r \r > O K \r \r > A T Z \r '252' \r \r E L M 3 2 7 ' ' v 1 . 5 \r \r > A T E 0 \r O K \r \r > O K \r \r > E L M 3 2 7 ' ' v 1 . 5 \r \r > ? \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > C A N ' ' E R R O R \r \r > O K \r \r > A T Z \r '252' \r \r E L M 3 2 7 ' ' v 1 . 5 \r \r > A T E 0 \r O K \r \r > O K \r \r > E L M 3 2 7 ' ' v 1 . 5 \r \r > ? \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > O K \r \r > C A N ' ' E R R O R \r \r > O K \r \r > A T Z \r '252' \r \r E L M 3 2 7 ' ' v 1 . 5 \r \r > A T E 0 \r O K \r \r > O K \r \r > E L M 3 2 7 ' ' v 1 . 5 \r \r > ? \r \r > O K \r \r > 
